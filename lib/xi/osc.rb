@@ -4,7 +4,7 @@ require 'osc-ruby'
 module Xi
   module OSC
     def initialize(clock, server: 'localhost', port:, **opts)
-      super(clock, **opts)
+      super(clock)
       @osc = OSC::Client.new(server, port)
     end
 
@@ -18,13 +18,13 @@ module Xi
 
     def send_bundle(address, *args, at: Time.now)
       msg = message(address, *args)
-      bundle = OSC::Bundle.new(at, msg)
+      bundle = ::OSC::Bundle.new(at, msg)
       logger.debug([__method__, msg.address, at.to_i, at.usec] + msg.to_a)
       send_osc_msg(bundle)
     end
 
     def message(address, *args)
-      OSC::Message.new(address, *args)
+      ::OSC::Message.new(address, *args)
     end
 
     def send_osc_msg(msg)
