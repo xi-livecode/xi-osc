@@ -3,8 +3,8 @@ require 'osc-ruby'
 
 module Xi
   module OSC
-    def initialize(clock, server: 'localhost', port:, **opts)
-      super(clock)
+    def initialize(name, clock, server: 'localhost', port:, **opts)
+      super(name, clock)
       @osc = OSC::Client.new(server, port)
     end
 
