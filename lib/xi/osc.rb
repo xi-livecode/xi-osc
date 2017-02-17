@@ -12,14 +12,14 @@ module Xi
 
     def send_msg(address, *args)
       msg = message(address, *args)
-      logger.debug([__method__, msg.address] + msg.to_a)
+      debug(__method__, msg.address, *msg.to_a)
       send_osc_msg(msg)
     end
 
     def send_bundle(address, *args, at: Time.now)
       msg = message(address, *args)
       bundle = ::OSC::Bundle.new(at, msg)
-      logger.debug([__method__, msg.address, at.to_i, at.usec] + msg.to_a)
+      debug(__method__, msg.address, at.to_i, at.usec, *msg.to_a)
       send_osc_msg(bundle)
     end
 
@@ -30,7 +30,7 @@ module Xi
     def send_osc_msg(msg)
       @osc.send(msg)
     rescue StandardError => err
-      logger.error(err)
+      error(err)
     end
   end
 end
