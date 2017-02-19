@@ -1,4 +1,4 @@
-# Xi::OSC
+# Xi::OSC  [![Build Status](https://travis-ci.org/xi-livecode/xi-osc.svg?branch=master)](https://travis-ci.org/xi-livecode/xi-osc)
 
 Open Sound Control (OSC) support for Xi
 
